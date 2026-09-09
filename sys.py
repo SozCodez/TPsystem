@@ -112,6 +112,18 @@ if ticketType == "premium":
     premiumB = "Premium Bonus! Free meal, usable once per day"
 #above, check also adds str to variable for finalReport
 
+def checkVip(ticket, parkM, age):
+    if ticket == "premium" and parkM == "yes":
+        access = "VIP Access"
+    elif age >= 65 and ticket == "premium":
+        access = "VIP Access"
+    else:
+        access = "STANDARD Access"
+
+    return access
+
+vipStatus = checkVip(ticketType, pMember, guestAge)
+
 #final report function
 def finalReport(guest):
     print()
@@ -119,6 +131,7 @@ def finalReport(guest):
     print("----- Guest Report -----")
     print()
     print("Guest: ", guestName)
+    print(vipStatus)
     print()
     print("Age: ", guestAge)
     print("Height: ", height, " inches")
