@@ -1,6 +1,8 @@
+#park introduction
 print("Welcome to Python Park!")
 print("We're going to get you a ticket and check your eligibility!")
 
+#gathering guest data
 print()
 print("First, enter your name ")
 guestName = input(": ")
@@ -37,6 +39,7 @@ if supervised == "y":
 elif supervised == "n":
     boolSupervised = False
 
+#admission price function
 def calculate_admission(age):
     if age <= 4:
        price = 0
@@ -51,7 +54,7 @@ def calculate_admission(age):
 
 admissionP = calculate_admission(guestAge)
 
-
+#discount function
 def calculateDis(price, member, visitTime):
     if member == "yes":
         discount = price - 5
@@ -66,10 +69,11 @@ def calculateDis(price, member, visitTime):
 
 discountedP = calculateDis (admissionP, pMember, visitTime)
 
-
+#preventing negative prices
 if discountedP <= 0:
     discountedP = 0
 
+#ride function
 def rideLevel(height, age):
     if height >= 54 and age >= 16:
         level = "Extreme Rides"
@@ -86,6 +90,7 @@ def rideLevel(height, age):
 
 level = rideLevel(height, guestAge)
 
+#supervision
 def checkSupervision(age, visitingWadult):
     if age < 13 and visitingWadult == False:
         supervision = "Adult Required"
@@ -100,12 +105,14 @@ def checkSupervision(age, visitingWadult):
 
 supervisionStat = checkSupervision(guestAge, boolSupervised)
 
-
+#premium ticket check
 premiumB = "No Bonus :("
 if ticketType == "premium":
     
     premiumB = "Premium Bonus! Free meal, usable once per day"
+#above, check also adds str to variable for finalReport
 
+#final report function
 def finalReport(guest):
     print()
     print("----- Python Park -----")
@@ -127,6 +134,8 @@ def finalReport(guest):
     print("Highest Ride Level: ")
     print(level)
     print()
+
+    #personalized message
     print(premiumB)
     print()
     print("-- Enjoy Python Park! --")
