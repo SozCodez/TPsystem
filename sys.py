@@ -29,6 +29,14 @@ print()
 print("Will you be visiting morning or evening")
 visitTime = input(": ")
 
+print()
+print("Are you spervised? y/n")
+supervised = input(": ")
+if supervised == "y":
+    boolSupervised = True
+elif supervised == "n":
+    boolSupervised = False
+
 def calculate_admission(age):
     if age <= 4:
        price = 0
@@ -44,5 +52,84 @@ def calculate_admission(age):
 admissionP = calculate_admission(guestAge)
 
 
+def calculateDis(price, member, visitTime):
+    if member == "yes":
+        discount = price - 5
+    if visitTime == "evening":
+        discount = price - 3
+    if member == "yes" and visitTime == "evening":
+        discount = price - 10
+    if member == "no" and visitTime == "morning":
+        discount = price
 
+    return discount
+
+discountedP = calculateDis (admissionP, pMember, visitTime)
+
+
+if discountedP <= 0:
+    discountedP = 0
+
+def rideLevel(height, age):
+    if height >= 54 and age >= 16:
+        level = "Extreme Rides"
+    elif height >= 48 and age >= 12:
+        level = "Thrill Rides"
+    elif height >= 42 and age >= 8:
+        level = "Family Rides"
+    elif height >= 36 and age >= 0:
+        level = "Kiddie Rides"
+    else:
+        level = "No Rides"
+
+    return level
+
+level = rideLevel(height, guestAge)
+
+def checkSupervision(age, visitingWadult):
+    if age < 13 and visitingWadult == False:
+        supervision = "Adult Required"
+    elif age < 13 and visitingWadult == True:
+        supervision = "Approved"
+    elif age >= 13 and visitingWadult == False:
+        supervision = "Approved"
+    else:
+        supervision = "Approved"
     
+    return supervision
+
+supervisionStat = checkSupervision(guestAge, boolSupervised)
+
+
+premiumB = "No Bonus :("
+if ticketType == "premium":
+    
+    premiumB = "Premium Bonus! Free meal, usable once per day"
+
+def finalReport(guest):
+    print()
+    print("----- Python Park -----")
+    print("----- Guest Report -----")
+    print()
+    print("Guest: ", guestName)
+    print()
+    print("Age: ", guestAge)
+    print("Height: ", height, " inches")
+    print("Ticket Type: ", ticketType)
+    print("Membership: ", pMember)
+    print()
+    print()
+    print("Regular Admission: ", admissionP)
+    print("Discounted Admission: ", discountedP)
+    print()
+    print("Supervision Status: ")
+    print(supervisionStat)
+    print("Highest Ride Level: ")
+    print(level)
+    print()
+    print(premiumB)
+    print()
+    print("-- Enjoy Python Park! --")
+    print()
+
+finalReport(guestName)
